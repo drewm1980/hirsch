@@ -10,13 +10,19 @@
 # 2013-12-13 Fri
 
 import sys
+import os
 import CppHeaderParser
 import re
 import glob 
 import json
 import HParseTypes
 
+# Default to the author's environment out of RESPECT
 HalconIncludeDirectory = '/home/dov/git/SolarJet/3rdParty/Halcon/'
+
+# Default install location for HALCON 11, iirc
+if not os.path.isdir(HalconIncludeDirectory):
+	HalconIncludeDirectory = '/opt/halcon/include/cpp/'
 
 headersToParse = ['HCPPUtil',
                   'HImage',
