@@ -2,14 +2,15 @@ from optparse import OptionParser
 from distutils.core import setup, Extension
 import sys
 
-# Set to include and library directory of halcon
-HalconIncludeDir = '/opt/halcon/include'
-HalconLibraryDir = '/opt/halcon/lib'
+# For HALCON 12 on linux
+HalconIncludeDirs = ['./src/', '/opt/halcon/include', '/opt/halcon/include/cpp']
+HalconLibraryDirs = ['/opt/halcon/lib/x64-linux/']
+HalconLibraries = ['halcon','halconcpp10']
 
 module1 = Extension('_hirsch',
-                    include_dirs = ['./src/',HalconIncludeDir],
-                    library_dirs = [HalconLibraryDir],
-                    libraries=['halcon','halconcpp'],
+                    include_dirs = HalconIncludeDirs,
+                    library_dirs = HalconLibraryDirs,
+                    libraries = HalconLibraries,
                     language = "c++",
                     sources = ['src/pyhirsch.cc',
                                'src/pyhaffinetrans2d.cc',
@@ -42,4 +43,3 @@ setup (name = 'Hirsch',
        ext_modules = [module1],
        py_modules=['hirsch.giv']
        )
-
